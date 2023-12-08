@@ -14,7 +14,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go application
-RUN go build -o main .
+RUN go build -v -o main .
 
 # Set environment variables
 ENV DEV=true
