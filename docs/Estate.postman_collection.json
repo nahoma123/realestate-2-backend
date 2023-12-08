@@ -1,0 +1,1233 @@
+{
+	"info": {
+		"_postman_id": "77eaa502-1afd-4ea5-ba79-ef5be64cd6d9",
+		"name": "Estate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7320020"
+	},
+	"item": [
+		{
+			"name": "Faculty Services",
+			"item": [
+				{
+					"name": "Add Estate Service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Service With ID\",\n    \"amount\":100,\n    \"currency\":\"N\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/faculty_services",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"faculty_services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Estate Services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"testing11\",\n    \"amount\":33.50,\n    \"currency\":\"N\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/faculty_services",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"faculty_services"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estates",
+			"item": [
+				{
+					"name": "Add Estate Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5haG9tYXNuYWtlMTJAZ21haWwuY29tIiwiZXhwIjoxNjczOTcwMTUxLCJ1c2VyX2lkIjoiMGRiYjcwNTgtMzYzOC00MDA5LTg2NzAtZmMzYmZmNmU5NWNkIn0.NxAqB0DTwiU5kBwlKQJyjEG3C42CaGkEI9wGR3ElIAc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"030ce9e6-78f6-4ad2-b7cf-3216ebaa3a30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/staffs",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"staffs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Estate Houses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/houses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"houses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Estate Staffs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"testing11\",\n    \"amount\":33.50,\n    \"currency\":\"N\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/staffs",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"staffs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Estate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"testing11\",\n    \"location\":\"d3, addis ababa, Ethiopia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "House Owner",
+			"item": [
+				{
+					"name": "Add House Owner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"030ce9e6-78f6-4ad2-b7cf-3216ebaa3a30\",\n    \"house_owner_category\":\"LandLord\",\n    \"living_in_the_estate\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/house_owners",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"estates",
+								"99588b31-d519-4d59-a1c7-45cefb227c63",
+								"house_owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add House",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/house_owners/f15f6c31-c83c-4a35-bc9f-1d298fc94bfd/houses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"house_owners",
+								"f15f6c31-c83c-4a35-bc9f-1d298fc94bfd",
+								"houses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Owner Houses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/house_owners/f15f6c31-c83c-4a35-bc9f-1d298fc94bfd/houses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"house_owners",
+								"f15f6c31-c83c-4a35-bc9f-1d298fc94bfd",
+								"houses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "House and Resident",
+			"item": [
+				{
+					"name": "House Subscription",
+					"item": [
+						{
+							"name": "House Fee Subscriptions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/houses_fees/26d2ac0c-9906-4e44-8891-dfe7a9f5135c/subscriptions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses_fees",
+										"26d2ac0c-9906-4e44-8891-dfe7a9f5135c",
+										"subscriptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add House Fee Subscription",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"start_date\": \"2006-01-02T15:04:05Z\",\n    \"frequency\":\"monthly\",\n    \"day_of_month\": 3,\n    \"month_of_year\" : 0,\n    \"resident_id\":\"d52966b5-c193-4eae-8dbd-e4ffcee07421\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses_fees/26d2ac0c-9906-4e44-8891-dfe7a9f5135c/subscriptions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses_fees",
+										"26d2ac0c-9906-4e44-8891-dfe7a9f5135c",
+										"subscriptions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Faculty Service Subscriptions",
+					"item": [
+						{
+							"name": "Add Faculty Service Subscription",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"house_id\": \"700d9cb4-057e-48b2-8945-80c0f182a397\",\n    \"start_date\": \"2022-01-02T15:04:05Z\",\n    \"frequency\":\"monthly\",\n    \"day_of_month\": 4,\n    \"month_of_year\" : 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/faculty_services/7782ff90-7960-4af9-ba1d-5255cf177df1/subscriptions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"faculty_services",
+										"7782ff90-7960-4af9-ba1d-5255cf177df1",
+										"subscriptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Faculty service Subscriptions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/faculty_services/700d9cb4-057e-48b2-8945-80c0f182a397/subscriptions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"faculty_services",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"subscriptions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Houses",
+					"item": [
+						{
+							"name": "Get House Fees",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses/700d9cb4-057e-48b2-8945-80c0f182a397/residents",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"residents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign Resident To House",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"030ce9e6-78f6-4ad2-b7cf-3216ebaa3a30\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses/700d9cb4-057e-48b2-8945-80c0f182a397/assign_resident",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"assign_resident"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get House Residents",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses/700d9cb4-057e-48b2-8945-80c0f182a397/residents",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"residents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create House Fees",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"house fee 1\",\n    \"amount\":33.50,\n    \"currency\":\"N\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses/700d9cb4-057e-48b2-8945-80c0f182a397/house_fees",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"house_fees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get House Fees",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"apartment_number\":\"401\",\n    \"floor_number\":\"05\",\n    \"building_number\":\"1005\",\n    \"estate_id\":\"99588b31-d519-4d59-a1c7-45cefb227c63\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/houses/700d9cb4-057e-48b2-8945-80c0f182a397/house_fees",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"houses",
+										"700d9cb4-057e-48b2-8945-80c0f182a397",
+										"house_fees"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guests",
+					"item": [
+						{
+							"name": "Add Guests",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"Yared\",\n    \"middle_name\": \"yared middle_name\",\n    \"last_name\":\"balbola\",\n    \"type\":\"type1\",\n    \"email\":\"yared@123@gmail.com\",\n    \"phone_number\":\"456901046798\",\n    \"house_id\": \"700d9cb4-057e-48b2-8945-80c0f182a397\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/guests",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"guests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Resident Guests",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/residents/d52966b5-c193-4eae-8dbd-e4ffcee07421/guests",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"residents",
+										"d52966b5-c193-4eae-8dbd-e4ffcee07421",
+										"guests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invites",
+					"item": [
+						{
+							"name": "Add Invite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"house_id\":\"700d9cb4-057e-48b2-8945-80c0f182a397\",\n    \"start_date\": \"2023-01-27T18:35:35Z\",\n    \"end_date\":\"2023-01-30T16:17:05Z\",\n    \"invite_by\":\"HOUSE_OWNER\",\n    \"house_owner_id\": \"f15f6c31-c83c-4a35-bc9f-1d298fc94bfd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/guests/64f89014-f727-4a58-9aab-9a08918000a2/invites",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"guests",
+										"64f89014-f727-4a58-9aab-9a08918000a2",
+										"invites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invite - Check In or Out",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"staff_id\": \"c0b91bb2-9d9e-11ed-a8fc-0242ac120002\",\n    \"type\": \"CHECK_OUT\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/invites/inv_code_c17d19eff08b040c074788726765ea7f/log_booking",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"invites",
+										"inv_code_c17d19eff08b040c074788726765ea7f",
+										"log_booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Invite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/invites/inv_code_9f474bb74ed713ec0ab81078a3f1c547/verify",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"invites",
+										"inv_code_9f474bb74ed713ec0ab81078a3f1c547",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Extend Invite Code",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"end_date\":\"2023-01-28T15:04:05Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/invites/db33f977-69b7-422c-bde9-6614958ad761",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"invites",
+										"db33f977-69b7-422c-bde9-6614958ad761"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Guest Invites",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/guests/b0a6da3e-2929-416b-9753-499e7b4f20f8/invites",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"guests",
+										"b0a6da3e-2929-416b-9753-499e7b4f20f8",
+										"invites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Invites By Code",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/guests/64f89014-f727-4a58-9aab-9a08918000a2/invites",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"guests",
+										"64f89014-f727-4a58-9aab-9a08918000a2",
+										"invites"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "Resident Payment Report Reports",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/monthly_faculty_service_report?month=02&year=2023",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"monthly_faculty_service_report"
+									],
+									"query": [
+										{
+											"key": "month",
+											"value": "02"
+										},
+										{
+											"key": "year",
+											"value": "2023"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Estate Resident Service Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/monthly_resident_report?month=01&year=2023",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"monthly_resident_report"
+									],
+									"query": [
+										{
+											"key": "month",
+											"value": "01"
+										},
+										{
+											"key": "year",
+											"value": "2023"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Estate Invite Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/invite_yearly_report?year=2023",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"invite_yearly_report"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2023"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Estate Configuration",
+					"item": [
+						{
+							"name": "Get Estate Configuration",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/estate_configurations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"estate_configurations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Estate Configuration",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"invite_default_penalty_amount\": 60\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/estate_configurations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"estate_configurations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Estate Configuration",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"max_owner_dept\": 50\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/estates/99588b31-d519-4d59-a1c7-45cefb227c63/estate_configurations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"estates",
+										"99588b31-d519-4d59-a1c7-45cefb227c63",
+										"estate_configurations"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
