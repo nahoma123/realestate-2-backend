@@ -23,6 +23,36 @@ import (
 )
 
 // gin-swagger middleware
+func RequestLogger() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		t := time.Now()
+
+		c.Next()
+
+		latency := time.Since(t)
+
+		fmt.Printf("%s %s %s %s\n",
+			c.Request.Method,
+			c.Request.RequestURI,
+			c.Request.Proto,
+			latency,
+		)
+	}
+}
+
+func ResponseLogger() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("X-Content-Type-Options", "nosniff")
+
+		c.Next()
+
+		fmt.Printf("%d %s %s\n",
+			c.Writer.Status(),
+			c.Request.Method,
+			c.Request.RequestURI,
+		)
+	}
+}
 
 func Initiate() {
 	// err := godotenv.Load(".env")
@@ -87,13 +117,16 @@ func Initiate() {
 	log.Info(context.Background(), "handler initialized")
 
 	log.Info(context.Background(), "initializing server")
-	server := gin.New()
+	server := gin.Default()
 	// server.Use(middleware.GinLogger(log))
 	server.Use(ginzap.RecoveryWithZap(log.GetZapLogger().Named("gin.recovery"), true))
 	server.Use(middleware.ErrorHandler())
 	if true {
 		server.Use(InitCORS())
 	}
+	server.Use(RequestLogger())
+	server.Use(ResponseLogger())
+
 	log.Info(context.Background(), "server initialized")
 
 	log.Info(context.Background(), "initializing metrics route")
