@@ -64,3 +64,23 @@ func (re EstateStorage) AddProperty(ctx context.Context, property *model.Propert
 
 	return property, err
 }
+
+func (re EstateStorage) AddInspectionResult(ctx context.Context, inspRes *model.InspectionResult) (*model.InspectionResult, error) {
+	inspRes.CreatedAt = time.Now()
+	inspRes.UpdatedAt = time.Now()
+
+	id, _ := uuid.NewV4()
+
+	inspRes.InspectionResultId = id.String()
+
+	err := re.gnr.CreateOne(ctx, constant.DbProperties, inspRes)
+	if err != nil {
+		logger.Log().Error(ctx, err.Error())
+		if gorm.ErrDuplicatedKey == err {
+			return nil, errors.ErrDataExists.Wrap(err, errors.InspectionResultIsAlreadyRegistered)
+		}
+		return nil, errors.ErrInternalServerError.New("unknown error occurred")
+	}
+
+	return inspRes, err
+}

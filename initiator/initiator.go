@@ -99,7 +99,6 @@ func Initiate() {
 	InitiateMigration(db, log)
 
 	CreateIndexes(log, db)
-
 	persistence := InitPersistence(db, log)
 	Cron(persistence)
 	log.Info(context.Background(), "persistence layer initialized")

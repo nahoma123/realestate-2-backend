@@ -13,9 +13,10 @@ const (
 )
 
 const (
-	DbValuation  = "valuations"
-	DbRealEstate = "real_estates"
-	DbProperties = "properties"
+	DbValuation         = "valuations"
+	DbRealEstate        = "real_estates"
+	DbProperties        = "properties"
+	DbInspectionResults = "inspection_results"
 )
 
 const (

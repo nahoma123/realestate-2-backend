@@ -65,6 +65,30 @@ func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddle
 			Handler:     handler.GetValuations,
 			Middlewares: []gin.HandlerFunc{},
 		},
+		{
+			Method:  "GET",
+			Path:    "/inspection_results",
+			Handler: handler.GetInspectionResult,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
+		{
+			Method:  "Post",
+			Path:    "/inspection_results",
+			Handler: handler.AddInspectionResult,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(true),
+			},
+		},
+		{
+			Method:  "PATCH",
+			Path:    "/inspection_results/:inspection_result_id",
+			Handler: handler.UpdateInspectionResult,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(true),
+			},
+		},
 	}
 	routing.RegisterRoutes(router, estateRoutes)
 }
