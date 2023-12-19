@@ -74,7 +74,7 @@ func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddle
 			},
 		},
 		{
-			Method:  "Post",
+			Method:  "POST",
 			Path:    "/inspection_results",
 			Handler: handler.AddInspectionResult,
 			Middlewares: []gin.HandlerFunc{

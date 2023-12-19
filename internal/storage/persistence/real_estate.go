@@ -73,7 +73,7 @@ func (re EstateStorage) AddInspectionResult(ctx context.Context, inspRes *model.
 
 	inspRes.InspectionResultId = id.String()
 
-	err := re.gnr.CreateOne(ctx, constant.DbProperties, inspRes)
+	err := re.gnr.CreateOne(ctx, constant.DbInspectionResults, inspRes)
 	if err != nil {
 		logger.Log().Error(ctx, err.Error())
 		if gorm.ErrDuplicatedKey == err {

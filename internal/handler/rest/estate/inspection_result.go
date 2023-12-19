@@ -49,7 +49,7 @@ func (o EstateHandler) UpdateInspectionResult(ctx *gin.Context) {
 		_ = ctx.Error(errors.ErrInvalidInput.Wrap(err, "invalid input"))
 		return
 	}
-	inspectionResultId := ctx.Param("inspectionResult_id")
+	inspectionResultId := ctx.Param("inspection_result_id")
 	inspectionResult.InspectionResultId = inspectionResultId
 
 	err = o.EstateModule.UpdateInspectionResult(ctx, inspectionResultId, inspectionResult)
