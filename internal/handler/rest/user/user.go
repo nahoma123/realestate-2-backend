@@ -2,6 +2,7 @@ package user
 
 import (
 	"net/http"
+	"strings"
 	"visitor_management/internal/constant"
 	"visitor_management/internal/constant/errors"
 	"visitor_management/internal/constant/model"
@@ -82,6 +83,14 @@ func (o *UserHandlerWrapper) GetUser(ctx *gin.Context) {
 }
 
 func (o *UserHandlerWrapper) Login(ctx *gin.Context) {
+	url := ctx.Request.URL.Path
+	lType := "Admin"
+	if strings.Contains(url, "landlord") {
+		lType = "Landlord"
+	} else if strings.Contains(url, "tenant") {
+		lType = "Tenant"
+	}
+
 	user := &model.User{}
 	err := ctx.Bind(user)
 	if err != nil {
@@ -90,7 +99,7 @@ func (o *UserHandlerWrapper) Login(ctx *gin.Context) {
 		return
 	}
 
-	auth, err := o.UserModule.Login(ctx, user.Email, user.Password)
+	auth, err := o.UserModule.Login(ctx, lType, user.Email, user.Password)
 	if err != nil {
 		o.logger.Info(ctx, zap.Error(err).String)
 		_ = ctx.Error(err)

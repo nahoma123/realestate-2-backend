@@ -11,6 +11,7 @@ import (
 
 func InitiateMigration(db *gorm.DB, log logger.Logger) {
 	// Auto-migrate the database models
+
 	err := db.AutoMigrate(
 		&model.User{},
 		&model.RealEstate{},

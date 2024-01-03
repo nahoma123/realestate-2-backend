@@ -49,7 +49,9 @@ CREATE TABLE public.properties (
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     latitude numeric,
-    longitude numeric
+    longitude numeric,
+    landlord_id text,
+    tenant_id text
 );
 
 

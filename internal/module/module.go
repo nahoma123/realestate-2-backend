@@ -18,7 +18,7 @@ type UserModule interface {
 	VerifyToken(signingMethod jwt.SigningMethod, tokenString string) (bool, *jwt.MapClaims, error)
 	GetUserStatus(ctx context.Context, Id string) (string, error)
 	GetUser(ctx context.Context, Id string) (*model.User, error)
-	Login(ctx context.Context, email, password string) (*AuthDetail, error)
+	Login(ctx context.Context, lType, email, password string) (*AuthDetail, error)
 	RegisterUser(ctx context.Context, profile *model.User) (*model.User, error)
 	UpdateUser(ctx context.Context, profile *model.User) (*model.User, error)
 	GetAll(ctx context.Context, filterPagination *constant.FilterPagination) ([]model.User, error)

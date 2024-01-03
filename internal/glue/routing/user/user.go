@@ -33,7 +33,19 @@ func InitRoute(router *gin.RouterGroup, handler rest.User, authMiddleware middle
 		},
 		{
 			Method:      "POST",
-			Path:        "/auth/login",
+			Path:        "/auth/tenant/login",
+			Handler:     handler.Login,
+			Middlewares: []gin.HandlerFunc{},
+		},
+		{
+			Method:      "POST",
+			Path:        "/auth/admin/login",
+			Handler:     handler.Login,
+			Middlewares: []gin.HandlerFunc{},
+		},
+		{
+			Method:      "POST",
+			Path:        "/auth/landlord/login",
 			Handler:     handler.Login,
 			Middlewares: []gin.HandlerFunc{},
 		},

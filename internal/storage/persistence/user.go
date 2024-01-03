@@ -115,7 +115,7 @@ func (p *user) Get(ctx context.Context, id string) (*model.User, error) {
 
 func (p *user) GetUserByEmail(ctx context.Context, email string) (*model.User, error) {
 	var user model.User
-	err := p.db.Where("email = ?", email).First(&user).Error
+	err := p.db.Where("email = ?", email).Preload("Rental").Preload("Properties").First(&user).Error
 	if err != nil {
 		logger.Log().Error(ctx, err.Error())
 		if err == gorm.ErrRecordNotFound {

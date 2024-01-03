@@ -8,8 +8,12 @@ import (
 )
 
 type User struct {
-	Id         uint      `gorm:"primaryKey" json:"id,omitempty"`
-	UserID     string    `gorm:"column:user_id" json:"user_id,omitempty"`
+	Id uint `gorm:"primaryKey" json:"id,omitempty"`
+
+	Properties []Property `gorm:"foreignKey:LandlordID;references:UserID" json:"landlords,omitempty"`
+	Rental     []Property `gorm:"foreignKey:TenantID;references:UserID" json:"rentals,omitempty"`
+
+	UserID     string    `gorm:"unique;column:user_id" json:"user_id,omitempty"`
 	FirstName  string    `gorm:"column:first_name" json:"first_name,omitempty"`
 	MiddleName string    `gorm:"column:middle_name" json:"middle_name,omitempty"`
 	LastName   string    `gorm:"column:last_name" json:"last_name,omitempty"`

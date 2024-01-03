@@ -40,7 +40,7 @@ func (o *user) GetUserStatus(ctx context.Context, Id string) (string, error) {
 	return "", nil
 }
 
-func (o *user) Login(ctx context.Context, email, password string) (*module.AuthDetail, error) {
+func (o *user) Login(ctx context.Context, lType, email, password string) (*module.AuthDetail, error) {
 	user, err := o.GetUserByEmail(ctx, email)
 	if err != nil {
 		return nil, err
@@ -51,11 +51,30 @@ func (o *user) Login(ctx context.Context, email, password string) (*module.AuthD
 			logger.Log().Error(ctx, err.Error())
 			return nil, errors.ErrInternalServerError.New("unable to generate token")
 		}
+
+		switch lType {
+		case "Landlord":
+			if len(user.Properties) == 0 {
+				return nil, errors.ErrAuthError.New("this login is only allowed for landlord")
+			}
+
+		case "Tenant":
+			if len(user.Rental) == 0 {
+				return nil, errors.ErrAuthError.New("this login is only allowed for tenant")
+			}
+
+		case "Admin":
+			if user.Role == "ADMIN_ROLE" {
+				return nil, errors.ErrAuthError.New("this login is only allowed for admin")
+			}
+		}
+
 		return &module.AuthDetail{
 			User:  user,
 			Token: token,
 		}, nil
 	}
+
 	return nil, errors.ErrAuthError.New("email and password do not match")
 }
 
