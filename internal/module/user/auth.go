@@ -64,7 +64,7 @@ func (o *user) Login(ctx context.Context, lType, email, password string) (*modul
 			}
 
 		case "Admin":
-			if user.Role == "ADMIN_ROLE" {
+			if user.Role != "ADMIN_ROLE" {
 				return nil, errors.ErrAuthError.New("this login is only allowed for admin")
 			}
 		}
