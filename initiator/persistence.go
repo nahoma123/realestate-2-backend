@@ -33,6 +33,8 @@ func createDB(host, user, password, dbname, port string) (*gorm.DB, error) {
 func CreateIndexes(log logger.Logger, db *gorm.DB) {
 	log.Info(context.Background(), "create indexes")
 
+	db = db.Debug()
+
 	err := db.Exec(`
 		CREATE UNIQUE INDEX unique_email
 		ON users ( email);

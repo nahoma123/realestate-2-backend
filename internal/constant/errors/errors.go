@@ -6,6 +6,7 @@ const (
 	PropertyIsAlreadyRegistered = "property is already registered"
 
 	InspectionResultIsAlreadyRegistered = "inspection result is already registered"
+	MaintenanceIsAlreadyRegistered      = "maintenance result is already registered"
 
 	DataIsAlreadyRegistered                  = "data is already registered"
 	UnknownDbErrorCountryIsAlreadyRegistered = "country is already registered"

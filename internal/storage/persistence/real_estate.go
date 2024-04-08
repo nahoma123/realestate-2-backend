@@ -84,3 +84,23 @@ func (re EstateStorage) AddInspectionResult(ctx context.Context, inspRes *model.
 
 	return inspRes, err
 }
+
+func (re EstateStorage) AddMaintenaceRequest(ctx context.Context, mainReq *model.MaintenanceRequest) (*model.MaintenanceRequest, error) {
+	mainReq.CreatedAt = time.Now()
+	mainReq.UpdatedAt = time.Now()
+
+	id, _ := uuid.NewV4()
+
+	mainReq.MaintenanceRequestId = id.String()
+
+	err := re.gnr.CreateOne(ctx, constant.DbMaintenanceRequests, mainReq)
+	if err != nil {
+		logger.Log().Error(ctx, err.Error())
+		if gorm.ErrDuplicatedKey == err {
+			return nil, errors.ErrDataExists.Wrap(err, errors.MaintenanceIsAlreadyRegistered)
+		}
+		return nil, errors.ErrInternalServerError.New("unknown error occurred")
+	}
+
+	return mainReq, err
+}

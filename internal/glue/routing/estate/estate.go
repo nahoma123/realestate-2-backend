@@ -89,6 +89,31 @@ func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddle
 				authMiddleware.Authentication(true),
 			},
 		},
+
+		{
+			Method:  "GET",
+			Path:    "/maintenance_requests",
+			Handler: handler.GetMaintenanceRequest,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
+		{
+			Method:  "POST",
+			Path:    "/maintenance_requests",
+			Handler: handler.AddMaintenanceRequest,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(true),
+			},
+		},
+		{
+			Method:  "PATCH",
+			Path:    "/maintenance_requests/:maintenance_request_id",
+			Handler: handler.UpdateMaintenanceRequest,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(true),
+			},
+		},
 	}
 	routing.RegisterRoutes(router, estateRoutes)
 }
