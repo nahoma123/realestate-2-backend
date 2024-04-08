@@ -103,7 +103,7 @@ func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddle
 			Path:    "/maintenance_requests",
 			Handler: handler.AddMaintenanceRequest,
 			Middlewares: []gin.HandlerFunc{
-				authMiddleware.Authentication(true),
+				authMiddleware.Authentication(false),
 			},
 		},
 		{
@@ -111,7 +111,7 @@ func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddle
 			Path:    "/maintenance_requests/:maintenance_request_id",
 			Handler: handler.UpdateMaintenanceRequest,
 			Middlewares: []gin.HandlerFunc{
-				authMiddleware.Authentication(true),
+				authMiddleware.Authentication(false),
 			},
 		},
 	}

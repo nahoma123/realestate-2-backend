@@ -17,7 +17,7 @@ const (
 	DbRealEstate          = "real_estates"
 	DbProperties          = "properties"
 	DbInspectionResults   = "inspection_results"
-	DbMaintenanceRequests = "maintenance_results"
+	DbMaintenanceRequests = "maintenance_requests"
 )
 
 const (
