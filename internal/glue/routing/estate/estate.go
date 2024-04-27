@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddleware middleware.AuthMiddleware) {
+func InitEstateRoute(router *gin.RouterGroup, handler estate.EstateHandler, authMiddleware middleware.AuthMiddleware) {
 	estateRoutes := []routing.Router{
 		{
 			Method:      "POST",

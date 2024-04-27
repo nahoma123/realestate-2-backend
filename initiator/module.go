@@ -13,15 +13,19 @@ type Module struct {
 	UserModule    user.UserModuleWrapper
 	GenericModule module.GenericModule
 	EstateModule  estate.EstateModule
+	CommModule    estate.CommModule
 }
 
 func InitModule(persistence Persistence, privateKeyPath string, platformLayer PlatformLayer, log logger.Logger) Module {
 
 	gmod := gMod.InitGenericModule(log, persistence.Generic)
 	estateModule := estate.InitEstate(log, persistence.Generic, persistence.EstateStorage)
+	commModule := estate.InitComm(log, persistence.Generic, persistence.CommunicationStorage)
+
 	return Module{
 		UserModule:    user.InitOAuth(log, persistence.Generic, persistence.User),
 		GenericModule: gmod,
 		EstateModule:  estateModule,
+		CommModule:    commModule,
 	}
 }

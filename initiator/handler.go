@@ -9,14 +9,16 @@ import (
 
 type Handler struct {
 	// TODO implement
-	user   rest.User
-	estate estate.EstateHandler
+	user        rest.User
+	estate      estate.EstateHandler
+	commHandler estate.CommunicationHandler
 }
 
 func InitHandler(module Module, log logger.Logger) Handler {
 	return Handler{
 		// TODO implement
-		user:   user.InitUser(log, module.UserModule),
-		estate: estate.InitEstate(log, module.EstateModule),
+		user:        user.InitUser(log, module.UserModule),
+		estate:      estate.InitEstate(log, module.EstateModule),
+		commHandler: estate.InitComm(log, module.CommModule),
 	}
 }

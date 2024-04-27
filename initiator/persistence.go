@@ -13,9 +13,10 @@ import (
 
 type Persistence struct {
 	// TODO implement
-	User          storage.UserStorage
-	Generic       storage.GenericStorage
-	EstateStorage persistence.EstateStorage
+	User                 storage.UserStorage
+	Generic              storage.GenericStorage
+	EstateStorage        persistence.EstateStorage
+	CommunicationStorage persistence.CommunicationStorage
 }
 
 func createDB(host, user, password, dbname, port string) (*gorm.DB, error) {
@@ -49,10 +50,12 @@ func InitPersistence(db *gorm.DB, log logger.Logger) Persistence {
 	userStorage := persistence.InitUserDB(db)
 	genericStorage := persistence.InitGenericDB(db)
 	estateStorage := persistence.InitRlEstateDB(db, genericStorage)
+	communicationStorage := persistence.InitCommunicationDB(db, genericStorage)
 
 	return Persistence{
-		User:          userStorage,
-		Generic:       genericStorage,
-		EstateStorage: estateStorage,
+		User:                 userStorage,
+		Generic:              genericStorage,
+		EstateStorage:        estateStorage,
+		CommunicationStorage: communicationStorage,
 	}
 }
