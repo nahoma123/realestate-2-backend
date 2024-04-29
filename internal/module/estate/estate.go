@@ -10,6 +10,7 @@ import (
 	"visitor_management/internal/storage/persistence"
 	"visitor_management/platform/logger"
 
+	"github.com/gofrs/uuid"
 	"go.uber.org/zap"
 )
 
@@ -121,4 +122,85 @@ func (re EstateModule) GetProperties(ctx context.Context, filterPagination *cons
 	}
 
 	return jbSeeker, nil
+}
+
+func (re EstateModule) GetRentDetails(ctx context.Context, propertyId string) (interface{}, error) {
+	valuations, err := re.rlEst.GetRentDetails(ctx, propertyId)
+	if err != nil {
+		return nil, err
+	}
+
+	return valuations, nil
+}
+
+func (re EstateModule) RentProperty(ctx context.Context, propertyId string, property *model.Property) error {
+	if err := property.ValidatePropertyRent(); err != nil {
+		err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+		logger.Log().Error(ctx, err.Error())
+		return err
+	}
+	property.UpdatedAt = time.Now()
+	property.CurrentRentLeasedDate = time.Now()
+
+	if int(property.CurrentRentAmount) == int(0) {
+		prop := &model.Property{}
+		err := re.gnr.GetOne(ctx, string(constant.DbProperties), prop, "property_id", propertyId)
+		if err != nil {
+			err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+			logger.Log().Error(ctx, err.Error())
+			return err
+		}
+
+		property.CurrentRentAmount = prop.Amount
+	}
+
+	err := re.gnr.UpdateOne(ctx, string(constant.DbProperties), property, "property_id", propertyId)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (re EstateModule) AddContract(ctx context.Context, contract *model.Contract) (*model.Contract, error) {
+	if err := contract.Validate(); err != nil {
+		err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+		re.logger.Info(ctx, "invalid input", zap.Error(err))
+		return nil, err
+	}
+	contract.UploadedDate = time.Now()
+
+	id, _ := uuid.NewV4()
+	contract.ContractId = id.String()
+
+	err := re.gnr.CreateOne(ctx, string(constant.DbContracts), contract)
+	if err != nil {
+		re.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+	return contract, nil
+}
+
+func (re EstateModule) UpdateContract(ctx context.Context, contractId string, contract *model.Contract) (*model.Contract, error) {
+	if err := contract.ValidateUpdate(); err != nil {
+		err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+		re.logger.Info(ctx, "invalid input", zap.Error(err))
+		return nil, err
+	}
+	contract.ContractId = contractId
+	err := re.gnr.UpdateOne(ctx, string(constant.DbContracts), contract, "contract_id", contractId)
+	if err != nil {
+		re.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+	return contract, nil
+}
+
+func (re EstateModule) GetContracts(ctx context.Context, filterPagination *constant.FilterPagination) (interface{}, error) {
+	inspectionResults, err := re.gnr.GetAll(ctx, string(constant.DbContracts), nil, filterPagination)
+	if err != nil {
+		return nil, err
+	}
+
+	return inspectionResults, nil
 }

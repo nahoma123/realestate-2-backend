@@ -11,6 +11,22 @@ import (
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 )
 
+type PropertyRentDetails struct {
+	Id         uint   `gorm:"primaryKey" json:"id"`
+	PropertyId string `gorm:"column:property_id" json:"property_id"`
+
+	LandlordID string `gorm:"type:text;column:landlord_id" json:"landlord_id"`
+	TenantID   string `gorm:"type:text;column:tenant_id" json:"tenant_id"`
+
+	Landlord *User `gorm:"foreignKey:LandlordID;references:UserID" json:"landlord"`
+	Tenant   *User `gorm:"foreignKey:TenantID;references:UserID" json:"tenant"`
+
+	CurrentRentAmount float64   `gorm:"rent_amount" json:"rent_amount"`
+	RentLastPaid      time.Time `gorm:"rent_last_paid" json:"rent_last_paid"`
+
+	RentStatus string `gorm:"-" json:"rent_status"`
+}
+
 type Property struct {
 	Id         uint   `gorm:"primaryKey" json:"id,omitempty"`
 	PropertyId string `gorm:"column:property_id" json:"property_id,omitempty"`
@@ -41,6 +57,10 @@ type Property struct {
 
 	Inspected          bool      `gorm:"inspected,omitempty" json:"inspected,omitempty"`
 	NextInspectionDate time.Time `gorm:"next_inspection_date,omitempty" json:"next_inspection_date,omitempty"`
+
+	CurrentRentAmount     float64   `gorm:"current_rent_amount,omitempty" json:"current_rent_amount,omitempty"`
+	RentLastPaid          time.Time `gorm:"rent_last_paid,omitempty" json:"rent_last_paid"`
+	CurrentRentLeasedDate time.Time `gorm:"current_rent_leased_date,omitempty" json:"current_rent_leased_date"`
 
 	CreatedAt time.Time `gorm:"created_at,omitempty" json:"created_at"`
 	UpdatedAt time.Time `gorm:"updated_at,omitempty" json:"updated_at"`
@@ -89,4 +109,13 @@ func (p Property) Validate() error {
 
 func (p Property) ValidateUpdate() error {
 	return validation.ValidateStruct(&p)
+}
+
+func (p Property) ValidatePropertyRent() error {
+	return validation.ValidateStruct(&p,
+		// validation.Field(&p.CurrentRentAmount, validation.Required),
+		validation.Field(&p.LandlordID, validation.Required),
+		validation.Field(&p.TenantID, validation.Required),
+		validation.Field(&p.RentLastPaid, validation.Required),
+	)
 }

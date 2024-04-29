@@ -167,3 +167,60 @@ func (o EstateHandler) GetValuations(ctx *gin.Context) {
 	constant.SuccessResponse(ctx, http.StatusOK, valuations, ftl)
 
 }
+
+func (o EstateHandler) GetRentDetails(ctx *gin.Context) {
+	propertyId := ctx.Param("property_id")
+
+	valuations, err := o.EstateModule.GetRentDetails(ctx, propertyId)
+	if err != nil {
+		o.logger.Info(ctx, zap.Error(err).String)
+		_ = ctx.Error(err)
+		return
+	}
+
+	constant.SuccessResponse(ctx, http.StatusOK, valuations, nil)
+}
+
+func (o EstateHandler) ConfirmPaymentRent(ctx *gin.Context) {
+	property := &model.Property{}
+	err := ctx.ShouldBind(&property)
+	if err != nil {
+		o.logger.Info(ctx, zap.Error(err).String)
+		_ = ctx.Error(errors.ErrInvalidInput.Wrap(err, "invalid input"))
+		return
+	}
+	propertyId := ctx.Param("property_id")
+	property.PropertyId = propertyId
+	property.RentLastPaid = time.Now()
+
+	err = o.EstateModule.UpdateProperty(ctx, propertyId, property)
+	if err != nil {
+		o.logger.Info(ctx, zap.Error(err).String)
+		_ = ctx.Error(err)
+		return
+	}
+
+	constant.SuccessResponse(ctx, http.StatusOK, "rent confirmed", nil)
+}
+
+func (o EstateHandler) RentProperty(ctx *gin.Context) {
+	property := &model.Property{}
+	err := ctx.ShouldBind(&property)
+	if err != nil {
+		o.logger.Info(ctx, zap.Error(err).String)
+		_ = ctx.Error(errors.ErrInvalidInput.Wrap(err, "invalid input"))
+		return
+	}
+	propertyId := ctx.Param("property_id")
+	property.PropertyId = propertyId
+	property.RentLastPaid = time.Now()
+
+	err = o.EstateModule.RentProperty(ctx, propertyId, property)
+	if err != nil {
+		o.logger.Info(ctx, zap.Error(err).String)
+		_ = ctx.Error(err)
+		return
+	}
+
+	constant.SuccessResponse(ctx, http.StatusOK, "rent confirmed", nil)
+}

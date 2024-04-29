@@ -1,7 +1,6 @@
 package initiator
 
 import (
-	"context"
 	"fmt"
 	"visitor_management/internal/storage"
 	"visitor_management/internal/storage/persistence"
@@ -29,20 +28,6 @@ func createDB(host, user, password, dbname, port string) (*gorm.DB, error) {
 	}
 
 	return db, nil
-}
-
-func CreateIndexes(log logger.Logger, db *gorm.DB) {
-	log.Info(context.Background(), "create indexes")
-
-	db = db.Debug()
-
-	err := db.Exec(`
-		CREATE UNIQUE INDEX unique_email
-		ON users ( email);
-	`).Error
-	if err != nil {
-		log.Debug(context.Background(), fmt.Sprintf("create indexes error: %s", err.Error()))
-	}
 }
 
 func InitPersistence(db *gorm.DB, log logger.Logger) Persistence {

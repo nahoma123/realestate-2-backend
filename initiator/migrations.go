@@ -17,7 +17,8 @@ func InitiateMigration(db *gorm.DB, log logger.Logger) {
 		&model.RealEstate{},
 		&model.Property{},
 		&model.InspectionResult{},
-		&model.MaintenanceRequest{})
+		&model.MaintenanceRequest{},
+		&model.Contract{})
 	if err != nil {
 		log.Error(context.Background(), "Failed to perform database migration", zap.Error(err))
 		return

@@ -104,3 +104,25 @@ func (re EstateStorage) AddMaintenaceRequest(ctx context.Context, mainReq *model
 
 	return mainReq, err
 }
+
+func (re EstateStorage) GetRentDetails(ctx context.Context, propertyId string) (*model.PropertyRentDetails, error) {
+	rent := &model.PropertyRentDetails{}
+	err := re.db.Table(string(constant.DbProperties)).Preload("Tenant").Preload("Landlord").First(rent).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return rent, nil
+}
+
+func (re EstateStorage) ConfirmPayRent(ctx context.Context, propertyId string) (*model.Property, error) {
+	rent := &model.Property{}
+	rent.RentLastPaid = time.Now()
+
+	err := re.db.Table(string(constant.DbProperties)).Where("property_id=?", propertyId).Save(rent).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return rent, nil
+}

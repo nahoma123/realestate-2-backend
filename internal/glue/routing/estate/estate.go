@@ -114,6 +114,55 @@ func InitEstateRoute(router *gin.RouterGroup, handler estate.EstateHandler, auth
 				authMiddleware.Authentication(false),
 			},
 		},
+		{
+			Method:  "GET",
+			Path:    "/properties/:property_id/rent_details",
+			Handler: handler.GetRentDetails,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
+		{
+			Method:  "POST",
+			Path:    "/properties/:property_id/confirm_payment_rent",
+			Handler: handler.ConfirmPaymentRent,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(false),
+			},
+		},
+		{
+			Method:  "POST",
+			Path:    "/properties/:property_id/rent_property",
+			Handler: handler.RentProperty,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(false),
+			},
+		},
+
+		{
+			Method:  "POST",
+			Path:    "/properties/:property_id/contracts",
+			Handler: handler.AddContract,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(false),
+			},
+		},
+		{
+			Method:  "PATCH",
+			Path:    "/contracts/:contract_id",
+			Handler: handler.UpdateContract,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(false),
+			},
+		},
+		{
+			Method:  "GET",
+			Path:    "/properties/:property_id/contracts",
+			Handler: handler.GetContracts,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
 	}
 	routing.RegisterRoutes(router, estateRoutes)
 }

@@ -16,6 +16,7 @@ const (
 	DbValuation           = "valuations"
 	DbRealEstate          = "real_estates"
 	DbProperties          = "properties"
+	DbContracts           = "contracts"
 	DbInspectionResults   = "inspection_results"
 	DbMaintenanceRequests = "maintenance_requests"
 )

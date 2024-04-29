@@ -12,8 +12,8 @@ func InitCommunicationRoute(router *gin.RouterGroup, handler estate.Communicatio
 	comRoutes := []routing.Router{
 		// {
 		// 	Method:      "POST",
-		// 	Path:        "/estates/add_valuation",
-		// 	Handler:     handler.AddValuation,
+		// 	Path:        "/properties/:property_id/rent_details",
+		// 	Handler:     handler.,
 		// 	Middlewares: []gin.HandlerFunc{},
 		// },
 	}
