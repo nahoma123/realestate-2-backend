@@ -19,6 +19,7 @@ const (
 	DbContracts           = "contracts"
 	DbInspectionResults   = "inspection_results"
 	DbMaintenanceRequests = "maintenance_requests"
+	DbCompliances         = "compliances"
 )
 
 const (

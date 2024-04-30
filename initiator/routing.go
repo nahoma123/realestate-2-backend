@@ -30,4 +30,5 @@ func InitRouter(router *gin.Engine, group *gin.RouterGroup, handler Handler, mod
 
 	user.InitRoute(group, handler.user, authMiddleware)
 	estate.InitEstateRoute(group, handler.estate, authMiddleware)
+	estate.InitCommunicationRoute(group, handler.commHandler, authMiddleware)
 }
