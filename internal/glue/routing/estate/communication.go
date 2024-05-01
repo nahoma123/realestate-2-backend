@@ -50,6 +50,40 @@ func InitCommunicationRoute(router *gin.RouterGroup, handler estate.Communicatio
 				authMiddleware.Authentication(),
 			},
 		},
+
+		//
+		{
+			Method:  "POST",
+			Path:    "/tenant/properties/:property_id/messages",
+			Handler: handler.AddMessage,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(false),
+			},
+		}, {
+			Method:  "GET",
+			Path:    "/messages",
+			Handler: handler.GetMessages,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
+		//
+		{
+			Method:  "GET",
+			Path:    "/landlord/properties/:property_id/messages",
+			Handler: handler.GetLandLordMessages,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
+		{
+			Method:  "POST",
+			Path:    "/admin/messages/:message_id/approve",
+			Handler: handler.AdminApproveMessage,
+			Middlewares: []gin.HandlerFunc{
+				authMiddleware.Authentication(),
+			},
+		},
 	}
 	routing.RegisterRoutes(router, comRoutes)
 }

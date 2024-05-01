@@ -20,6 +20,7 @@ func InitiateMigration(db *gorm.DB, log logger.Logger) {
 		&model.MaintenanceRequest{},
 		&model.Contract{},
 		&model.Compliance{},
+		&model.Message{},
 	)
 	if err != nil {
 		log.Error(context.Background(), "Failed to perform database migration", zap.Error(err))

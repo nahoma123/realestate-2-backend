@@ -90,3 +90,74 @@ func (comm CommModule) GetCompliance(ctx context.Context, propId string) (*model
 
 	return compliance, nil
 }
+
+func (comm CommModule) AddMessage(ctx context.Context, comp *model.Message) (*model.Message, error) {
+	if err := comp.Validate(); err != nil {
+		err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+		comm.logger.Info(ctx, "invalid input", zap.Error(err))
+		return nil, err
+	}
+
+	id, _ := uuid.NewV4()
+	comp.MessageId = id.String()
+
+	property := &model.Property{}
+	err := comm.gnr.GetOne(ctx, string(constant.DbProperties), property, "property_id", comp.PropertyId)
+	if err != nil {
+		comm.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+
+	comp.TenantId = property.TenantID
+	comp.LandlordID = property.LandlordID
+	err = comm.gnr.CreateOne(ctx, string(constant.DbMessages), comp)
+	if err != nil {
+		comm.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+	return comp, nil
+}
+
+func (comm CommModule) UpdateMessage(ctx context.Context, messageId string, message *model.Message) (*model.Message, error) {
+	if err := message.ValidateUpdate(); err != nil {
+		err = errors.ErrInvalidInput.Wrap(err, "invalid input")
+		comm.logger.Info(ctx, "invalid input", zap.Error(err))
+		return nil, err
+	}
+	message.MessageId = messageId
+	err := comm.gnr.UpdateOne(ctx, string(constant.DbMessages), message, "message_id", messageId)
+	if err != nil {
+		comm.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+	return message, nil
+}
+
+func (comm CommModule) AdminApproveMessage(ctx context.Context, messageId *model.Message) (*model.Message, error) {
+	message := &model.Message{}
+	err := comm.gnr.UpdateOne(ctx, string(constant.DbMessages), message, "message_id", messageId)
+	if err != nil {
+		comm.logger.Warn(ctx, err.Error())
+		return nil, err
+	}
+	return message, nil
+}
+
+func (comm CommModule) GetMessages(ctx context.Context, filterPagination *constant.FilterPagination) (interface{}, error) {
+	messages, err := comm.gnr.GetAll(ctx, string(constant.DbMessages), nil, filterPagination)
+	if err != nil {
+		return nil, err
+	}
+
+	return messages, nil
+}
+
+func (comm CommModule) GetMessage(ctx context.Context, propId string) (*model.Message, error) {
+	compliance := &model.Message{}
+	err := comm.gnr.GetOne(ctx, string(constant.DbMessages), compliance, "property_id", propId)
+	if err != nil {
+		return nil, err
+	}
+
+	return compliance, nil
+}

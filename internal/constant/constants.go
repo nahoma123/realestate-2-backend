@@ -20,6 +20,7 @@ const (
 	DbInspectionResults   = "inspection_results"
 	DbMaintenanceRequests = "maintenance_requests"
 	DbCompliances         = "compliances"
+	DbMessages            = "messages"
 )
 
 const (
