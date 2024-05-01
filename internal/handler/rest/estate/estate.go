@@ -105,7 +105,7 @@ func (o EstateHandler) UploadImage(ctx *gin.Context) {
 		return
 	}
 
-	constant.SuccessResponse(ctx, http.StatusCreated, fileName, nil)
+	constant.SuccessResponse(ctx, http.StatusCreated, fmt.Sprintf("/files/%s", fileName), nil)
 }
 
 func (o EstateHandler) GetImage(ctx *gin.Context) {
