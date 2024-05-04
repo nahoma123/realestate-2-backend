@@ -26,6 +26,8 @@ func createDB(host, user, password, dbname, port string) (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Enable query log for the database
+	db = db.Debug()
 
 	return db, nil
 }
