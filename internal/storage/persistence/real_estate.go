@@ -107,7 +107,7 @@ func (re EstateStorage) AddMaintenaceRequest(ctx context.Context, mainReq *model
 
 func (re EstateStorage) GetRentDetails(ctx context.Context, propertyId string) (*model.PropertyRentDetails, error) {
 	rent := &model.PropertyRentDetails{}
-	err := re.db.Table(string(constant.DbProperties)).Preload("Tenant").Preload("Landlord").First(rent).Error
+	err := re.db.Table(string(constant.DbProperties)).Preload("Tenant").Preload("Landlord").Where("property_id", propertyId).First(rent).Error
 	if err != nil {
 		return nil, err
 	}
