@@ -27,5 +27,8 @@ func InitiateMigration(db *gorm.DB, log logger.Logger) {
 		return
 	}
 
+	// Enable query log for the database
+	db = db.Debug()
+
 	log.Info(context.Background(), "Database migration completed successfully")
 }
