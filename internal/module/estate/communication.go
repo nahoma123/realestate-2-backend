@@ -144,7 +144,8 @@ func (comm CommModule) AdminApproveMessage(ctx context.Context, messageId *model
 }
 
 func (comm CommModule) GetMessages(ctx context.Context, filterPagination *constant.FilterPagination) (interface{}, error) {
-	messages, err := comm.gnr.GetAll(ctx, string(constant.DbMessages), nil, filterPagination)
+	messages := &[]model.Message{}
+	err := comm.comStr.GetMessages(ctx, filterPagination, messages)
 	if err != nil {
 		return nil, err
 	}

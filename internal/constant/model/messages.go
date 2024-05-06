@@ -13,6 +13,9 @@ type Message struct {
 	LandlordID string `gorm:"type:text;column:landlord_id" json:"landlord_id,omitempty"`
 	PropertyId string `json:"property_id"`
 
+	LandLord *User `gorm:"foreignKey:LandlordID;references:UserID" json:"landlord,omitempty"`
+	Tenant   *User `gorm:"foreignKey:TenantId;references:UserID" json:"tenant,omitempty"`
+
 	AdminApproved bool `json:"admin_approved"`
 
 	IsReadAdmin    bool   `json:"is_read_admin"`
