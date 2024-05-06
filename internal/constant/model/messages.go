@@ -9,12 +9,13 @@ import (
 type Message struct {
 	Id         uint   `gorm:"primaryKey" json:"id,omitempty"`
 	MessageId  string `json:"message_id"`
-	TenantId   string `json:"tenant_id"`
-	LandlordID string `gorm:"type:text;column:landlord_id" json:"landlord_id,omitempty"`
 	PropertyId string `json:"property_id"`
 
-	LandLord *User `gorm:"foreignKey:LandlordID;references:UserID" json:"landlord,omitempty"`
-	Tenant   *User `gorm:"foreignKey:TenantId;references:UserID" json:"tenant,omitempty"`
+	LandlordID string `gorm:"type:text;column:landlord_id" json:"landlord_id,omitempty"`
+	TenantID   string `gorm:"type:text;column:tenant_id" json:"tenant_id,omitempty"`
+
+	Landlord *User `gorm:"foreignKey:LandlordID;references:UserID" json:"landlord,omitempty"`
+	Tenant   *User `gorm:"foreignKey:TenantID;references:UserID" json:"tenant,omitempty"`
 
 	AdminApproved bool `json:"admin_approved"`
 

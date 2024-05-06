@@ -86,7 +86,7 @@ func (p *CommunicationStorage) GetMessages(ctx context.Context, filterPagination
 	table = table.Offset((filterPagination.Pagination.Page - 1) * filterPagination.Pagination.PerPage).Limit(filterPagination.Pagination.PerPage)
 
 	// Execute the query and retrieve the results
-	if err := table.Find(results).Error; err != nil {
+	if err := table.Preload("Tenant").Preload("Landlord").Find(results).Error; err != nil {
 		return err
 	}
 

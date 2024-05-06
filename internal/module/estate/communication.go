@@ -108,7 +108,7 @@ func (comm CommModule) AddMessage(ctx context.Context, comp *model.Message) (*mo
 		return nil, err
 	}
 
-	comp.TenantId = property.TenantID
+	comp.TenantID = property.TenantID
 	comp.LandlordID = property.LandlordID
 	err = comm.gnr.CreateOne(ctx, string(constant.DbMessages), comp)
 	if err != nil {
