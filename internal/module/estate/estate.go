@@ -130,6 +130,8 @@ func (re EstateModule) GetRentDetails(ctx context.Context, propertyId string) (i
 		return nil, err
 	}
 
+	valuations.RentStatus = valuations.CalculateRentStatus()
+
 	return valuations, nil
 }
 

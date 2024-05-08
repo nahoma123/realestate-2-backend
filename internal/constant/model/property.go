@@ -21,8 +21,9 @@ type PropertyRentDetails struct {
 	Landlord *User `gorm:"foreignKey:LandlordID;references:UserID" json:"landlord"`
 	Tenant   *User `gorm:"foreignKey:TenantID;references:UserID" json:"tenant"`
 
-	CurrentRentAmount float64   `gorm:"rent_amount" json:"rent_amount"`
-	RentLastPaid      time.Time `gorm:"rent_last_paid" json:"rent_last_paid"`
+	CurrentRentAmount     float64   `gorm:"rent_amount" json:"rent_amount"`
+	RentLastPaid          time.Time `gorm:"rent_last_paid" json:"rent_last_paid"`
+	CurrentRentLeasedDate time.Time `gorm:"current_rent_leased_date,omitempty" json:"current_rent_leased_date"`
 
 	RentStatus string `gorm:"-" json:"rent_status"`
 }
@@ -65,6 +66,26 @@ type Property struct {
 	CreatedAt time.Time `gorm:"created_at,omitempty" json:"created_at"`
 	UpdatedAt time.Time `gorm:"updated_at,omitempty" json:"updated_at"`
 }
+
+func (p *PropertyRentDetails) CalculateRentStatus() string {
+	// Get the current time
+	now := time.Now()
+
+	// Calculate the number of months since the lease date
+	monthsSinceLease := now.Year()*12 + int(now.Month()) - (p.CurrentRentLeasedDate.Year()*12 + int(p.CurrentRentLeasedDate.Month()))
+
+	// Calculate the number of months since the last rent payment
+	monthsSinceLastPayment := now.Year()*12 + int(now.Month()) - (p.RentLastPaid.Year()*12 + int(p.RentLastPaid.Month()))
+
+	// If the number of months since the last payment is less than the number of months since the lease date, rent is paid
+	if monthsSinceLastPayment <= monthsSinceLease {
+		return "Paid"
+	}
+
+	// Otherwise, rent is unpaid
+	return "Unpaid"
+}
+
 type StringArray []string
 
 func (o *StringArray) Scan(src interface{}) error {
